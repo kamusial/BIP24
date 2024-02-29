@@ -16,21 +16,19 @@ sns.displot(df.Weight)  # men and women together
 # sns.displot(df.query("Gender=='Female'").Weight)
 plt.show()
 
-#gender, dana nienumeryczna
-df = pd.get_dummies(df)  #zamienia dane niemeryczne, na numeryczne
-print(df)
-del(df["Gender_Male"])   #usuń kolumnę
+#gender - not numeric data
+df = pd.get_dummies(df)
+del(df["Gender_Male"])
 df.rename(columns={'Gender_Female': 'Gender'}, inplace=True)
 print(df.head(5))
-#dane na stole
 
-model = LinearRegression()   #wybieram algorytm
-model.fit(df[ ['Height', 'Gender'] ], df['Weight'] )   #policz
+model = LinearRegression()
+model.fit(df[ ['Height', 'Gender'] ], df['Weight'] )
 print(model.coef_, model.intercept_)
-print('wzór: Height * ',model.coef_[0], '+ Gender * ',model.coef_[1],' = Weight')
+print('Eq: Height * ',model.coef_[0], '+ Gender * ',model.coef_[1],' = Weight')
 
-#Własna formuła
-gender = 0  #male
+# self formula
+gender = 0
 height = 170
 weight = model.intercept_ + model.coef_[0] * height + model.coef_[1] * gender
 print(weight)

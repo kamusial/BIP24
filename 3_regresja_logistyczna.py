@@ -7,7 +7,7 @@ from sklearn.metrics import confusion_matrix
 df = pd.read_csv('diabetes.csv')
 print(df.head(5).to_string())
 print(df.isna().sum())
-print(df.outcome.value_counts())  #klasy columns"prawie" zrównoważone
+print(df.outcome.value_counts())
 print(df.columns)
 print(df.describe().T.to_string())
 
